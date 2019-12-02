@@ -14,9 +14,11 @@ import java.util.UUID;
 
 public class MainController {
     public static void displayMainMenu() {
-        System.out.println("1. Add New Service" +
+        System.out.println("\n1. Add New Service" +
                 "\n2. Show Service" +
-                "\n3. Exit");
+                "\n3. Add New Customers"+
+                "\n4. Show Infomation Customers"+
+                "\n5. Exit");
         Scanner input = new Scanner(System.in);
         int selec = input.nextInt();
         switch (selec) {
@@ -28,6 +30,10 @@ public class MainController {
                 ShowService();
                 break;
             case 3:
+                addNewCustomer();
+                break;
+            case 4:
+                ShowInfo();
                 break;
         }
     }
@@ -70,12 +76,12 @@ public class MainController {
                 "\n3. Show All Room" +
                 "\n4. Back to menu" +
                 "\n5. Exit");
-        Scanner input= new Scanner(System.in);
-        int select=input.nextInt();
-        switch (select){
+        Scanner input = new Scanner(System.in);
+        int select = input.nextInt();
+        switch (select) {
             case 1:
                 showAllVilla();
-            break;
+                break;
             case 2:
                 break;
             case 3:
@@ -89,8 +95,8 @@ public class MainController {
     }
 
     private static Services addNewService(Services services) {
-        String content= "";
-        String errMes="";
+        String content = "";
+        String errMes = "";
         Scanner input = new Scanner(System.in);
         services.setID(UUID.randomUUID().toString().replace("-", ""));
         // Enter Name
@@ -103,36 +109,36 @@ public class MainController {
         }
 
         // Enter Area
-        content=" Enter Area";
-        errMes="Area is Invalid(Area > 30, Area Must Be A  Double ). Please try again.";
-        services.setArea(FuncValidate.checkValidNumberDouble(content,errMes));
-        while (services.getArea()<=30){
+        content = " Enter Area";
+        errMes = "Area is Invalid(Area > 30, Area Must Be A  Double ). Please try again.";
+        services.setArea(FuncValidate.checkValidNumberDouble(content, errMes));
+        while (services.getArea() <= 30) {
             System.out.println(errMes);
-            services.setArea(FuncValidate.checkValidNumberDouble(content,errMes));
+            services.setArea(FuncValidate.checkValidNumberDouble(content, errMes));
         }
 
         // Enter Rental Cost
-        content=" Enter Rental Cost";
-        errMes="Rental Cost is Invalid(Cost > 0, Cost Must Be A  Double ). Please try again.";
-        services.setRentalCost(FuncValidate.checkValidNumberDouble(content,errMes));
-        while (services.getRentalCost()<=0){
+        content = " Enter Rental Cost";
+        errMes = "Rental Cost is Invalid(Cost > 0, Cost Must Be A  Double ). Please try again.";
+        services.setRentalCost(FuncValidate.checkValidNumberDouble(content, errMes));
+        while (services.getRentalCost() <= 0) {
             System.out.println(errMes);
-            services.setRentalCost(FuncValidate.checkValidNumberDouble(content,errMes));
+            services.setRentalCost(FuncValidate.checkValidNumberDouble(content, errMes));
         }
 
         //Enter Max Number Of Pepple
-        content=" Enter Max Number Of People";
-        errMes="Max Number Of People is Invalid(Cost > 0, Cost Must Be A  Double ). Please try again.";
-        services.setNumberOfPeople((int) FuncValidate.checkValidNumberInterger(content,errMes));
-        while (services.getNumberOfPeople()<=0 || services.getNumberOfPeople()>=20){
+        content = " Enter Max Number Of People";
+        errMes = "Max Number Of People is Invalid(Cost > 0, Cost Must Be A  Double ). Please try again.";
+        services.setNumberOfPeople((int) FuncValidate.checkValidNumberInterger(content, errMes));
+        while (services.getNumberOfPeople() <= 0 || services.getNumberOfPeople() >= 20) {
             System.out.println(errMes);
-            services.setNumberOfPeople((int) FuncValidate.checkValidNumberInterger(content,errMes));
+            services.setNumberOfPeople((int) FuncValidate.checkValidNumberInterger(content, errMes));
         }
 
         // Enter Type Rent
         System.out.println("Enter Type Rent: ");
         services.setTypeRent(input.nextLine());
-        while (!FuncValidate.checkNameService(services.getTypeRent())){
+        while (!FuncValidate.checkNameService(services.getTypeRent())) {
             System.out.println("Type Rent is invalid. Please try again !!!");
             System.out.println("Enter Type Rent");
             services.setTypeRent(input.nextLine());
@@ -141,8 +147,8 @@ public class MainController {
     }
 
     private static void addNewVilla() {
-        String content= "";
-        String errMes="";
+        String content = "";
+        String errMes = "";
 
         Scanner input = new Scanner(System.in);
         Services villa = new Villa();
@@ -155,7 +161,7 @@ public class MainController {
         // Ép kiểu tường mình
 
         ((Villa) villa).setRoomStandard(input.nextLine());
-        while (!FuncValidate.checkNameService( ((Villa) villa).getRoomStandard())){
+        while (!FuncValidate.checkNameService(((Villa) villa).getRoomStandard())) {
             System.out.println("Room Standard is invalid. Please try agian");
             System.out.println("Enter Room Standard: ");
             ((Villa) villa).setRoomStandard(input.nextLine());
@@ -166,22 +172,22 @@ public class MainController {
 
 
         // Enter  Pool Area
-            content="Enter Pool Area";
-            errMes="Pool Area is invalid (Area >=30, Area must be a double). Please try again !!!";
-        ((Villa) villa).setPoolArea(FuncValidate.checkValidNumberDouble(content,errMes));
-        while (((Villa) villa).getPoolArea()<=30){
+        content = "Enter Pool Area";
+        errMes = "Pool Area is invalid (Area >=30, Area must be a double). Please try again !!!";
+        ((Villa) villa).setPoolArea(FuncValidate.checkValidNumberDouble(content, errMes));
+        while (((Villa) villa).getPoolArea() <= 30) {
             System.out.println(errMes);
             System.out.println(content);
-            ((Villa) villa).setPoolArea(FuncValidate.checkValidNumberDouble(content,errMes));
+            ((Villa) villa).setPoolArea(FuncValidate.checkValidNumberDouble(content, errMes));
         }
         // Enter Number of Floor
-        content="Enter Number Of Floor";
-        errMes="Number Of Floor is invalid. Please try again !!! ";
-        ((Villa) villa).setNumberOfFloors((int) FuncValidate.checkValidNumberInterger(content,errMes));
-        while (((Villa) villa).getNumberOfFloors()<=0){
+        content = "Enter Number Of Floor";
+        errMes = "Number Of Floor is invalid. Please try again !!! ";
+        ((Villa) villa).setNumberOfFloors((int) FuncValidate.checkValidNumberInterger(content, errMes));
+        while (((Villa) villa).getNumberOfFloors() <= 0) {
             System.out.println(errMes);
             System.out.println(content);
-            ((Villa) villa).setNumberOfFloors((int) FuncValidate.checkValidNumberInterger(content,errMes));
+            ((Villa) villa).setNumberOfFloors((int) FuncValidate.checkValidNumberInterger(content, errMes));
         }
 
         // tạo 1 ArrayList có tên là ListVilla để lưu trữ thông tin của Villa.
@@ -200,34 +206,34 @@ public class MainController {
     }
 
     private static void addNewHouse() {
-        String content= "";
-        String errMes="";
+        String content = "";
+        String errMes = "";
         Scanner input = new Scanner(System.in);
         Services house = new House();
         house = addNewService(house);
         System.out.println("");
-        content="Enter Room Standard";
-        errMes="Room Standard is invalid. Please try again";
+        content = "Enter Room Standard";
+        errMes = "Room Standard is invalid. Please try again";
         // bây giờ sử dụng Villa nhưng kiểu dữ liệu của nó là Service nên phải ép kiểu
         // Ép kiểu tường mình
         ((House) house).setRoomStandard(input.nextLine());
-        while (!FuncValidate.checkNameService(((House) house).getRoomStandard())){
+        while (!FuncValidate.checkNameService(((House) house).getRoomStandard())) {
             System.out.println(errMes);
             System.out.println(content);
-            ((House)house).setRoomStandard(input.nextLine());
+            ((House) house).setRoomStandard(input.nextLine());
         }
         // Enter Convenient
         System.out.println("Enter Convenient");
         ((House) house).setConvenient(input.nextLine());
 
         // Enter Number of Floor
-        content="Enter Number Of Floor";
-        errMes="Number Of Floor is invalid. Please try again";
-        ((House) house).setNumberOfFloors((int) FuncValidate.checkValidNumberInterger(content,errMes));
-        while (((House)house).getNumberOfFloors()<=0){
+        content = "Enter Number Of Floor";
+        errMes = "Number Of Floor is invalid. Please try again";
+        ((House) house).setNumberOfFloors((int) FuncValidate.checkValidNumberInterger(content, errMes));
+        while (((House) house).getNumberOfFloors() <= 0) {
             System.out.println(errMes);
             System.out.println(content);
-            ((House)house).setNumberOfFloors((int) FuncValidate.checkValidNumberInterger(content,errMes));
+            ((House) house).setNumberOfFloors((int) FuncValidate.checkValidNumberInterger(content, errMes));
         }
 
         ArrayList<House> ListHouse = new ArrayList<House>();
@@ -238,21 +244,21 @@ public class MainController {
     }
 
     private static void addNewRoom() {
-        String content="";
-        String errMes="";
+        String content = "";
+        String errMes = "";
         Scanner input = new Scanner(System.in);
         Services room = new Room();
         room = addNewService(room);
-        content="Enter Free Service";
-        errMes="Free Service is invalid. Please try agian";
+        content = "Enter Free Service";
+        errMes = "Free Service is invalid. Please try agian";
 
         // bây giờ sử dụng Villa nhưng kiểu dữ liệu của nó là Service nên phải ép kiểu
         // Ép kiểu tường mình
         ((Room) room).setFreeService(input.nextLine());
-        while (!FuncValidate.checkNameService(((Room)room).getFreeService())){
+        while (!FuncValidate.checkNameService(((Room) room).getFreeService())) {
             System.out.println(errMes);
             System.out.println(content);
-            ((Room)room).setFreeService(input.nextLine());
+            ((Room) room).setFreeService(input.nextLine());
         }
 
 
@@ -264,21 +270,32 @@ public class MainController {
     }
 
     private static void showAllVilla() {
-        ArrayList<Villa> listVilla= FuncWriteFileCSV.getVillaFromCSV();
-        System.out.println(listVilla.size()+"aaaa");
-        for (Villa villa: listVilla){
+        ArrayList<Villa> listVilla = FuncWriteFileCSV.getVillaFromCSV();
+        System.out.println(listVilla.size() + "aaaa");
+        for (Villa villa : listVilla) {
             System.out.println("\n----------------------------");
             System.out.println(villa.ShowInfo());
             System.out.println(villa.getID());
             System.out.println("\n----------------------------");
         }
-        Scanner input= new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         backMainMenu();
     }
 
     private static void showAllHouse() {
     }
-    private static void showAllRoom(){
+
+    private static void showAllRoom() {
 
     }
+    private static void addNewCustomer(){
+
+    }
+    private static void ShowInfo(){
+
+    }
+
+
+
+
 }
