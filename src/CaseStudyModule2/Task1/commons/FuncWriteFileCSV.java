@@ -38,6 +38,7 @@ public class FuncWriteFileCSV {
     // Phương thức nhập Villa vào file CSV
     public static void WriteVillaToFileCSV(ArrayList<Villa> arrayList) {
         try(Writer writer = new FileWriter(pathVilla);
+            // CSVWriter là tạo ra file write
             CSVWriter csvWriter = new CSVWriter(writer,
                     CSVWriter.DEFAULT_SEPARATOR,
                     CSVWriter.DEFAULT_QUOTE_CHARACTER,
