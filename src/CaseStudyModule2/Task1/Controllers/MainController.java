@@ -16,8 +16,8 @@ public class MainController {
     public static void displayMainMenu() {
         System.out.println("\n1. Add New Service" +
                 "\n2. Show Service" +
-                "\n3. Add New Customers"+
-                "\n4. Show Infomation Customers"+
+                "\n3. Add New Customers" +
+                "\n4. Show Infomation Customers" +
                 "\n5. Exit");
         Scanner input = new Scanner(System.in);
         int selec = input.nextInt();
@@ -288,14 +288,14 @@ public class MainController {
     private static void showAllRoom() {
 
     }
-    private static void addNewCustomer(){
+
+    private static void addNewCustomer() {
 
     }
-    private static void ShowInfo(){
+
+    private static void ShowInfo() {
 
     }
-
-
 
 
 }
